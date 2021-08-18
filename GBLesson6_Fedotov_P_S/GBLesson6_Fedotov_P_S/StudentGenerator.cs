@@ -7,6 +7,69 @@ using System.Threading.Tasks;
 
 namespace GBLesson6_Fedotov_P_S
 {
+    class Generic
+    {
+        public String name { get; set; }
+        public String lastName { get; set; }
+        public int age { get; set; }
+        public char sex { get; set; }
+        public override string ToString()
+        {
+            return $"{name} {lastName} {age} {sex}";
+        }
+        static Random rnd = new Random();
+        public static Generic StudentGeneric(List<string> listNM, List<string> listNW, List<string> listLN)
+        {
+            return new Generic()
+            {
+                sex= SexGeneric(),//в статичискую переменную не принимает значение в текущем контексте
+                name = nameGeneric(sex, listNM, listNW),//this.sex не проходит требует ссылку или статичискую переменную
+                lastName = listLN[rnd.Next(0, listLN.Count)],
+                age= AgeGeneric()
+            };
+        }
+        static int AgeGeneric()
+        {
+            int tempChanceAge = rnd.Next(0, 100);
+            int str = 0;
+            if (tempChanceAge > 80) { str = rnd.Next(21, 40); }
+            else { str = rnd.Next(18, 21); }
+            return str;
+        }
+        static string nameGeneric(char sx, List<string> listNM, List<string> listNW)
+        {
+            string str;
+            if (sx == 'm')
+            {
+                str = listNM[rnd.Next(0, listNM.Count)];
+            }
+            else
+            {
+                str = listNW[rnd.Next(0, listNW.Count)];
+            }
+            return str;
+        }
+        static string lastNameGeneric(char sx, List<string> listLN)
+        {
+            string str;
+            if (sx == 'm')
+            {
+                str = listLN[rnd.Next(0, listLN.Count)];
+            }
+            else
+            {
+                str = listLN[rnd.Next(0, listLN.Count)]+"а";
+            }
+            return str;
+        }
+        static char SexGeneric()
+        {
+            char sex;
+            if (rnd.Next(0, 100) > 50) { sex = 'm'; }
+            else { sex = 'w'; }
+            return sex;
+        }
+    }
     class StudentGenerator
     {
         string nameNotClearWorld, lastnameNotClearWorld;
@@ -91,30 +154,17 @@ namespace GBLesson6_Fedotov_P_S
         string[] creatPerson(string university, string faculty, int course, string department, int group)
         {
             string[] person = new string[10];
-            char sex;
+            person[0] =
+            person[1] =
             person[2] = university;
             person[3] = faculty;
             person[4] = course.ToString();
             person[5] = department;
             person[6] = group.ToString();
-            Random rnd = new Random();
-            if (rnd.Next(0, 100) > 50) { sex = 'm'; }
-            else { sex = 'w'; }
-            person[9] = sex.ToString();
-            if (sex == 'm')
-            {
-                person[1] = nameMenList[rnd.Next(0, nameMenList.Count)];
-                person[0] = lastnameList[rnd.Next(0, lastnameList.Count)];
-            }
-            else
-            {
-                person[1] = nameWomenList[rnd.Next(0, nameWomenList.Count)];
-                person[0] = lastnameList[rnd.Next(0, lastnameList.Count)] + "а";
-            }
             person[7] = "Москва";
-            int tempChanceAge = rnd.Next(0, 100);
-            if (tempChanceAge > 80) { person[8] = rnd.Next(21, 40).ToString(); }
-            else { person[8] = rnd.Next(18, 21).ToString(); }
+            string[] personGetRendom = Generic.StudentGeneric(nameMenList, nameWomenList, lastnameList).ToString().Split(' ');
+            person[9] = personGetRendom[3];
+            person[8] = personGetRendom[2];
             return person;
         }
         #endregion
