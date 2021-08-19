@@ -90,16 +90,17 @@ namespace GBLesson6_Fedotov_P_S
         #region creatPerson
         string[] creatPerson(string university, string faculty, int course, string department, int group)
         {
+            Generic Gen = new Generic();
             string[] person = new string[10];
-            person[0] =
-            person[1] =
+            string[] personGetRendom = Gen.StudentGeneric(nameMenList, nameWomenList, lastnameList).ToString().Split(' ');
+            person[0] = personGetRendom[0];
+            person[1] = personGetRendom[1];
             person[2] = university;
             person[3] = faculty;
             person[4] = course.ToString();
             person[5] = department;
             person[6] = group.ToString();
             person[7] = "Москва";
-            string[] personGetRendom = Generic.StudentGeneric(nameMenList, nameWomenList, lastnameList).ToString().Split(' ');
             person[9] = personGetRendom[3];
             person[8] = personGetRendom[2];
             return person;
