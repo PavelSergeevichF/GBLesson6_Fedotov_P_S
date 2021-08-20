@@ -23,7 +23,7 @@ namespace GBLesson6_Fedotov_P_S
             int bakalavr = 0;
             int magistr = 0;
             int student18_20 = 0;
-            int[] studentOnCourse = new int[6];
+            int[] studentOnCourse = new int[7];
             List<Student> list = new List<Student>();                             // Создаем список студентов
             List<string[]> listTest = new List<string[]>();
 
@@ -46,20 +46,21 @@ namespace GBLesson6_Fedotov_P_S
             #endregion
 
             StreamReader sr = new StreamReader("students_6.csv");
+            Console.WriteLine("Список студентов. Для продолжения нажмите ввод.");
+            Console.ReadLine();
             while (!sr.EndOfStream)//
             {
                 try
                 {
-                    //string[] s = sr.ReadLine().Split(';');
                     string temp = sr.ReadLine();
                     string[] s = temp.Split(';');
                     Console.WriteLine(temp);
                     // Добавляем в список новый экземпляр класса Student
                     list.Add(new Student
                         (
-                        s[0], s[1], s[2], s[3], s[5], 
-                        int.Parse(s[4]), int.Parse(s[8]), int.Parse(s[6]), 
-                        s[7])
+                        s[0], s[1], s[2], s[3], s[4], 
+                        int.Parse(s[5]), int.Parse(s[6]), int.Parse(s[7]), 
+                        s[8])
                         );
                     // Одновременно подсчитываем количество бакалавров и магистров
                     if (int.Parse(s[5]) < 5) bakalavr++; else magistr++;
@@ -74,14 +75,13 @@ namespace GBLesson6_Fedotov_P_S
             }
             sr.Close();
 
-
             //Подсчитать количество студентов учащихся на 5 и 6 курсах;
             string student18_20Cours = "";
             foreach (var v in list)
             {
                 if (v.age > 17 && v.age < 21)
                 {
-                    studentOnCourse[v.course]++;
+                    studentOnCourse[v.course-1]++;
                     student18_20++;
                 }
             }
@@ -94,6 +94,8 @@ namespace GBLesson6_Fedotov_P_S
                     student18_20Cours += " " + tmp + ", ";
                 }
             }
+            Console.WriteLine("\nДанные. Для продолжения нажмите ввод.");
+            Console.ReadLine();
             //отсортировать список по возрасту студента;
             list.Sort(new Comparison<Student>(DelegatForSortByAge));
             Console.WriteLine("Всего студентов:" + list.Count);
@@ -102,10 +104,12 @@ namespace GBLesson6_Fedotov_P_S
             Console.WriteLine("Студентов учащихся на 4-5 курсе: {0}", magistr);
             Console.WriteLine("Студентов в возросте от 18 до 20: {0}", student18_20);
             Console.WriteLine("Студенты в возросте от 18 до 20 учатся на: {0} курсах.", student18_20Cours);
-            foreach (var v in list) Console.WriteLine(v.firstName);
-            Console.WriteLine(DateTime.Now - dt);
+            Console.WriteLine("\nСписок студентов отсортированный по возросту. Для продолжения нажмите ввод.");
             Console.ReadLine();
-            Console.ReadKey();
+            foreach (var v in list) Console.WriteLine(v.firstName+" "+v.age);
+            Console.WriteLine(DateTime.Now - dt);
+            Console.WriteLine("\n Для выхода нажмите ввод.");
+            Console.ReadLine();
         }
     }
 }

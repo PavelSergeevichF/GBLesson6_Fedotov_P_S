@@ -98,12 +98,12 @@ namespace GBLesson6_Fedotov_P_S
             person[1] = personGetRendom[1];
             person[2] = university;
             person[3] = faculty;
-            person[4] = course.ToString();
-            person[5] = department;
-            person[6] = group.ToString();
-            person[7] = "Москва";
-            person[9] = personGetRendom[3];
-            person[8] = personGetRendom[2];
+            person[4] = department;
+            person[5] = course.ToString();
+            person[6] = personGetRendom[2];//age
+            person[7] = group.ToString();
+            person[9] = personGetRendom[3];//Sex
+            person[8] = "Москва";
             return person;
         }
         #endregion
