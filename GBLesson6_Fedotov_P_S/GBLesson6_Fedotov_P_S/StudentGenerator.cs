@@ -15,7 +15,9 @@ namespace GBLesson6_Fedotov_P_S
         public List<string> nameWomenList = new List<string>();
         List<string> lastnameList = new List<string>();
         List<string[]> student = new List<string[]>();
+        public List<string[]> students => student;
         string[] studentStr = new string[10];
+        Generic Gen = new Generic();
 
         public StudentGenerator(string strName, string strLastName)
         {
@@ -90,7 +92,6 @@ namespace GBLesson6_Fedotov_P_S
         #region creatPerson
         string[] creatPerson(string university, string faculty, int course, string department, int group)
         {
-            Generic Gen = new Generic();
             string[] person = new string[10];
             string[] personGetRendom = Gen.StudentGeneric(nameMenList, nameWomenList, lastnameList).ToString().Split(' ');
             person[0] = personGetRendom[0];

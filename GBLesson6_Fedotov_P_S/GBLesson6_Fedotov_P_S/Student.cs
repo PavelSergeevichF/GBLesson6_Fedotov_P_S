@@ -17,20 +17,18 @@ namespace GBLesson6_Fedotov_P_S
         public int group;
         public string city;
         public int age;
-        public char sex;
         // Создаем конструктор
         public Student
             (
-            string firstName, 
-            string lastName, 
-            string university, 
-            string faculty, 
-            string department, 
-            int course, 
-            int age, 
-            int group, 
-            string city,
-            char sex
+            string firstName,   //0
+            string lastName,    //1
+            string university,  //2
+            string faculty,     //3
+            string department,  //4
+            int course,         //5
+            int age,            //6
+            int group,          //7
+            string city         //8
             )
         {
             this.lastName = lastName;
@@ -42,7 +40,6 @@ namespace GBLesson6_Fedotov_P_S
             this.age = age;
             this.group = group;
             this.city = city;
-            this.sex = sex;
         }
 
     }
